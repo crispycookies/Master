@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="CargoProjects">
+    <cargoProject FILE="$PROJECT_DIR$/Cargo.toml" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="d7908128-4e1c-4b83-9c56-ee15e9009fdd" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="k8z5ai3m" />
+  </component>
+  <component name="ProjectId" id="1jC7H4SqiKL430I1C5eoPN3VBmn" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
+    <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
+    <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Documents/tudsat/software/SPI_429" />
+    <property name="org.rust.cargo.project.model.PROJECT_DISCOVERY" value="true" />
+    <property name="settings.editor.selected.configurable" value="CPPToolchains" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Run" type="CargoCommandRunConfiguration" factoryName="Cargo Command">
+      <option name="channel" value="DEFAULT" />
+      <option name="command" value="run --package Master --bin Master -- &quot;192.168.1.6:7979&quot;" />
+      <option name="allFeatures" value="false" />
+      <option name="emulateTerminal" value="false" />
+      <option name="backtrace" value="SHORT" />
+      <option name="workingDirectory" value="file://$PROJECT_DIR$" />
+      <envs />
+      <method v="2">
+        <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="RustProjectSettings">
+    <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
+    <option name="version" value="2" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="d7908128-4e1c-4b83-9c56-ee15e9009fdd" name="Default Changelist" comment="" />
+      <created>1603296128395</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1603296128395</updated>
+      <workItem from="1603296131021" duration="9416000" />
+      <workItem from="1603320514468" duration="120000" />
+      <workItem from="1603377722506" duration="12000" />
+      <workItem from="1603828831587" duration="1778000" />
+      <workItem from="1603830795378" duration="3321000" />
+      <workItem from="1603834862247" duration="2000" />
+      <workItem from="1603840312738" duration="19000" />
+      <workItem from="1603840347790" duration="762000" />
+      <workItem from="1603845711646" duration="116000" />
+      <workItem from="1603893367926" duration="935000" />
+      <workItem from="1603904760131" duration="1721000" />
+      <workItem from="1603915029988" duration="1370000" />
+      <workItem from="1603918161809" duration="2709000" />
+      <workItem from="1603965151313" duration="62000" />
+      <workItem from="1603972939265" duration="26000" />
+      <workItem from="1603977406725" duration="3453000" />
+      <workItem from="1603983096208" duration="31000" />
+      <workItem from="1603986271777" duration="17000" />
+      <workItem from="1603987198680" duration="2000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="344" y="57" key="#SSH_Configurations" timestamp="1603914505692">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="344" y="57" key="#SSH_Configurations/0.0.1536.824@0.0.1536.824" timestamp="1603914505692" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603914691297">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1603914691297" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1603983125505">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603983125505" />
+    <state width="1493" height="204" key="GridCell.Tab.0.bottom" timestamp="1603983126594">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603983126594" />
+    <state width="1493" height="204" key="GridCell.Tab.0.center" timestamp="1603983126594">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603983126594" />
+    <state width="1493" height="204" key="GridCell.Tab.0.left" timestamp="1603983126594">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603983126594" />
+    <state width="1493" height="204" key="GridCell.Tab.0.right" timestamp="1603983126594">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="204" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603983126594" />
+    <state width="1493" height="253" key="GridCell.Tab.1.bottom" timestamp="1603320488036">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="253" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603320488036" />
+    <state width="1493" height="253" key="GridCell.Tab.1.center" timestamp="1603320488036">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="253" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1603320488036" />
+    <state width="1493" height="253" key="GridCell.Tab.1.left" timestamp="1603320488036">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="253" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1603320488036" />
+    <state width="1493" height="253" key="GridCell.Tab.1.right" timestamp="1603320488036">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="253" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1603320488036" />
+    <state x="277" y="57" key="SettingsEditor" timestamp="1603914654881">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1603914654881" />
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1603914650516">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="431" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1603914650516" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/main.rs</url>
+          <line>17</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/src/main.rs</url>
+          <line>60</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
