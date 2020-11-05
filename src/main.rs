@@ -9,13 +9,13 @@ fn main() -> std::io::Result<()> {
     {
         let mut iterator = 0;
         let args: Vec<String> = env::args().collect();
-        if args.len() != 3{
+        if args.len() != 4{
             panic!("Invalid Count of Arguments Provided")
         }
         let send_packages = 50000;
         print!("Connecting\n");
-        let timeout = Duration::from_millis(10000);
-        let socket = UdpSocket::bind(args.get(1).unwrap().to_string()).expect("Could not connect to Device, is it correct?");
+        let timeout = Duration::from_millis(args.get(3).unwrap().parse::<u64>().expect("No Valid Timeout Provided"));
+        let socket = UdpSocket::bind(args.get(1).unwrap().to_string()).expect("Could not connect to Device");
         let _timout_socket = socket.set_read_timeout(Option::from(timeout));
         let _timout_socket = socket.set_write_timeout(Option::from(timeout));
 
