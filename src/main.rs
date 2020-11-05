@@ -62,8 +62,8 @@ fn main() -> std::io::Result<()> {
                 let _write = file.write(builder.as_bytes());
             }
         }
-        print!("Packages Drops: {}\n", package_drop_counter);
-        print!("Packages Not Drops: {}\n", iterator);
+        print!("Packages Dropped: {}\n", package_drop_counter);
+        print!("Packages Not Dropped: {}\n", iterator);
     }
     Ok(())
 }
