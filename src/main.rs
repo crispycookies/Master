@@ -30,12 +30,10 @@ fn main() -> std::io::Result<()> {
         print!("Running\n");
 
         for _i in 0..send_packages {
-            // Receives a single datagram message on the socket. If `buf` is too small to hold
-            // the message, it will be cut off.
-            //let buf_send = [255; 16];
-            let buf_send = [255; 16];
+            let buf_send = "ping ping ping  ".as_bytes();
             let mut buf_read = [0; 16];
             let time = Instant::now();
+            let mut double_count = false;
 
             match socket.send_to(&buf_send, args.get(2).unwrap().to_string()){
                 Err(_e) => {
@@ -44,34 +42,29 @@ fn main() -> std::io::Result<()> {
                 _ => { match socket.recv_from(&mut buf_read){
                     Err(_e) => {
                         package_drop_counter = package_drop_counter + 1;
+                        double_count = true;
                     }
                     _ => {}
                 }}
             }
 
-
-            //socket.send_to(&buf_send, &src).expect("Failed to send the message!");
-
             let elapsed = time.elapsed();
 
             if buf_read != buf_send {
-                //print!("[WARNING]Message sent and received dont match\n");
-                package_drop_counter = package_drop_counter + 1;
+                if !double_count {
+                    package_drop_counter = package_drop_counter + 1;
+                }
             }else{
                 let elapsed_millis =  elapsed.as_millis().to_string();
-                //print!("[NOTE]Received Message; RTT -> {}ms\n", elapsed_millis);
-
                 let builder = iterator.to_string() + "," + elapsed_millis.as_str() + "\n";
 
                 iterator = iterator + 1;
                 let _write = file.write(builder.as_bytes());
             }
-            // Redeclare `buf` as slice of the received data and send reverse data back to origin.
-
         }
         print!("Packages Drops: {}\n", package_drop_counter);
         print!("Packages Not Drops: {}\n", iterator);
-    } // the socket is closed here
+    }
     Ok(())
 }
 
