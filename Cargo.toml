@@ -1,5 +1,5 @@
 [package]
-name = "Master"
+name = "master"
 version = "0.1.0"
 authors = ["crispycookies <crispycookies@users.noreply.github.com>"]
 edition = "2018"

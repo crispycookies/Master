@@ -9,10 +9,10 @@ fn main() -> std::io::Result<()> {
     {
         let mut iterator = 0;
         let args: Vec<String> = env::args().collect();
-        if args.len() != 4{
+        if args.len() != 5{
             panic!("Invalid Count of Arguments Provided")
         }
-        let send_packages = 50000;
+        let send_packages = args.get(4).unwrap().parse::<u32>().expect("No Valid Sample Size Provided");
         print!("Connecting\n");
         let timeout = Duration::from_millis(args.get(3).unwrap().parse::<u64>().expect("No Valid Timeout Provided"));
         let socket = UdpSocket::bind(args.get(1).unwrap().to_string()).expect("Could not connect to Device");
@@ -27,9 +27,11 @@ fn main() -> std::io::Result<()> {
 
         let mut package_drop_counter = 0;
 
+        let mut timings = Vec::with_capacity(send_packages as usize);
+
         print!("Running\n");
 
-        for _i in 0..send_packages {
+        for i in 0..send_packages {
             let buf_send = "ping ping ping  ".as_bytes();
             let mut buf_read = [0; 16];
             let time = Instant::now();
@@ -55,15 +57,22 @@ fn main() -> std::io::Result<()> {
                     package_drop_counter = package_drop_counter + 1;
                 }
             }else{
-                let elapsed_millis =  elapsed.as_millis().to_string();
-                let builder = iterator.to_string() + "," + elapsed_millis.as_str() + "\n";
-
                 iterator = iterator + 1;
-                let _write = file.write(builder.as_bytes());
+
+                timings[i as usize] = elapsed.as_millis();
+
+                //let _write = file.write(builder.as_bytes());
             }
         }
         print!("Packages Dropped: {}\n", package_drop_counter);
         print!("Packages Not Dropped: {}\n", iterator);
+
+        print!("Saving File\n");
+
+        for i in 0..timings.len() {
+            let builder = i.to_string() + "," + &*timings[i as usize].to_string();
+            let _write = file.write(builder.as_bytes());
+        }
     }
     Ok(())
 }
