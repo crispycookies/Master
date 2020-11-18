@@ -5,11 +5,60 @@ use std::io::{Write};
 use std::path::Path;
 use std::fs::File;
 
+struct Rval {
+    packages_dropped : u32,
+    packages_survived : u32,
+    timings : Vec<u128>
+}
+
+fn store(timings: Vec<u128>, filename: &str) {
+    let path = Path::new(filename);
+    let mut file = File::create(&path).expect("Could not create File");
+    for i in 0..timings.len() {
+        let builder = i.to_string() + "," + &*timings[i as usize].to_string();
+        let _write = file.write(builder.as_bytes());
+    }
+}
+
+fn run(socket: UdpSocket, send_packages: u32, addr : &str) -> Rval {
+    let mut ret_val : Rval = Rval{packages_dropped : 0, packages_survived : 0, timings : Vec::with_capacity(send_packages as usize)};
+
+    for i in 0..send_packages {
+        let buf_send = "ping ping ping  ".as_bytes();
+        let mut buf_read = [0; 16];
+        let time = Instant::now();
+        let mut double_count = false;
+
+        let elapsed = time.elapsed();
+        match socket.send_to(&buf_send, addr) {
+            Err(_e) => {}
+            _ => {
+                match socket.recv_from(&mut buf_read) {
+                    Err(_e) => {
+                        ret_val.packages_dropped = ret_val.packages_dropped + 1;
+                        double_count = true;
+                    }
+                    _ => {}
+                }
+            }
+        }
+
+        if buf_read != buf_send {
+            if !double_count {
+                ret_val.packages_dropped = ret_val.packages_dropped + 1;
+            }
+        } else {
+            ret_val.timings[i as usize] = elapsed.as_millis();
+            ret_val.packages_survived = ret_val.packages_survived + 1;
+        }
+    }
+    return ret_val;
+}
+
 fn main() -> std::io::Result<()> {
     {
-        let mut iterator = 0;
         let args: Vec<String> = env::args().collect();
-        if args.len() != 5{
+        if args.len() != 5 {
             panic!("Invalid Count of Arguments Provided")
         }
         let send_packages = args.get(4).unwrap().parse::<u32>().expect("No Valid Sample Size Provided");
@@ -22,57 +71,16 @@ fn main() -> std::io::Result<()> {
         let _block = socket.set_nonblocking(false);
         let _c = socket.connect(args.get(2).unwrap().to_string());
 
-        let path = Path::new("Timings.csv");
-        let mut file = File::create(&path).expect("Could not create File");
-
-        let mut package_drop_counter = 0;
-
-        let mut timings = Vec::with_capacity(send_packages as usize);
-
         print!("Running\n");
 
-        for i in 0..send_packages {
-            let buf_send = "ping ping ping  ".as_bytes();
-            let mut buf_read = [0; 16];
-            let time = Instant::now();
-            let mut double_count = false;
+        let result = run(socket, send_packages, args.get(2).unwrap().to_string().as_str());
 
-            match socket.send_to(&buf_send, args.get(2).unwrap().to_string()){
-                Err(_e) => {
-
-                }
-                _ => { match socket.recv_from(&mut buf_read){
-                    Err(_e) => {
-                        package_drop_counter = package_drop_counter + 1;
-                        double_count = true;
-                    }
-                    _ => {}
-                }}
-            }
-
-            let elapsed = time.elapsed();
-
-            if buf_read != buf_send {
-                if !double_count {
-                    package_drop_counter = package_drop_counter + 1;
-                }
-            }else{
-                iterator = iterator + 1;
-
-                timings[i as usize] = elapsed.as_millis();
-
-                //let _write = file.write(builder.as_bytes());
-            }
-        }
-        print!("Packages Dropped: {}\n", package_drop_counter);
-        print!("Packages Not Dropped: {}\n", iterator);
+        print!("Packages Dropped: {}\n", result.packages_dropped);
+        print!("Packages Not Dropped: {}\n", result.packages_survived);
 
         print!("Saving File\n");
 
-        for i in 0..timings.len() {
-            let builder = i.to_string() + "," + &*timings[i as usize].to_string();
-            let _write = file.write(builder.as_bytes());
-        }
+        let _ = store(result.timings, "Timings.csv");
     }
     Ok(())
 }

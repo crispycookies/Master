@@ -26,8 +26,6 @@
   <component name="ChangeListManager">
     <list default="true" id="d7908128-4e1c-4b83-9c56-ee15e9009fdd" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/Cargo.toml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,6 +84,11 @@
         <option name="CARGO.BUILD_TASK_PROVIDER" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
   </component>
   <component name="RustProjectSettings">
     <option name="toolchainHomeDirectory" value="$USER_HOME$/.cargo/bin" />
@@ -124,7 +127,10 @@
       <workItem from="1604585781825" duration="1056000" />
       <workItem from="1604694284894" duration="489000" />
       <workItem from="1605365458210" duration="3000" />
-      <workItem from="1605711536482" duration="1620000" />
+      <workItem from="1605711536482" duration="2689000" />
+      <workItem from="1605714237411" duration="1385000" />
+      <workItem from="1605715880164" duration="610000" />
+      <workItem from="1605716765543" duration="1529000" />
     </task>
     <task id="LOCAL-00001" summary="Added Configurable Timeout">
       <created>1604584945631</created>
@@ -147,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604586249804</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Fixed Grammar I guess">
+      <created>1605713373474</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605713373474</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,34 +194,34 @@
     </state>
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1603914691297" />
     <state x="372" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2560.1034@0.0.2560.1034" timestamp="1604694461402" />
-    <state x="1587" y="256" width="814" height="527" key="CommitChangelistDialog2" timestamp="1604586249758">
+    <state x="1587" y="256" width="814" height="527" key="CommitChangelistDialog2" timestamp="1605713373283">
       <screen x="0" y="0" width="2560" height="1034" />
     </state>
-    <state x="1587" y="256" width="814" height="527" key="CommitChangelistDialog2/0.0.2560.1034@0.0.2560.1034" timestamp="1604586249758" />
+    <state x="1587" y="256" width="814" height="527" key="CommitChangelistDialog2/0.0.2560.1034@0.0.2560.1034" timestamp="1605713373283" />
     <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1603983125505">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603983125505" />
-    <state width="2512" height="252" key="GridCell.Tab.0.bottom" timestamp="1605712973323">
+    <state width="2512" height="252" key="GridCell.Tab.0.bottom" timestamp="1605719058649">
       <screen x="0" y="0" width="2560" height="1034" />
     </state>
     <state width="1493" height="204" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1603983126594" />
-    <state width="2512" height="252" key="GridCell.Tab.0.bottom/0.0.2560.1034@0.0.2560.1034" timestamp="1605712973323" />
-    <state width="2512" height="252" key="GridCell.Tab.0.center" timestamp="1605712973323">
+    <state width="2512" height="252" key="GridCell.Tab.0.bottom/0.0.2560.1034@0.0.2560.1034" timestamp="1605719058649" />
+    <state width="2512" height="252" key="GridCell.Tab.0.center" timestamp="1605719058648">
       <screen x="0" y="0" width="2560" height="1034" />
     </state>
     <state width="1493" height="204" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1603983126594" />
-    <state width="2512" height="252" key="GridCell.Tab.0.center/0.0.2560.1034@0.0.2560.1034" timestamp="1605712973323" />
-    <state width="2512" height="252" key="GridCell.Tab.0.left" timestamp="1605712973323">
+    <state width="2512" height="252" key="GridCell.Tab.0.center/0.0.2560.1034@0.0.2560.1034" timestamp="1605719058648" />
+    <state width="2512" height="252" key="GridCell.Tab.0.left" timestamp="1605719058648">
       <screen x="0" y="0" width="2560" height="1034" />
     </state>
     <state width="1493" height="204" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1603983126594" />
-    <state width="2512" height="252" key="GridCell.Tab.0.left/0.0.2560.1034@0.0.2560.1034" timestamp="1605712973323" />
-    <state width="2512" height="252" key="GridCell.Tab.0.right" timestamp="1605712973323">
+    <state width="2512" height="252" key="GridCell.Tab.0.left/0.0.2560.1034@0.0.2560.1034" timestamp="1605719058648" />
+    <state width="2512" height="252" key="GridCell.Tab.0.right" timestamp="1605719058648">
       <screen x="0" y="0" width="2560" height="1034" />
     </state>
     <state width="1493" height="204" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603983126594" />
-    <state width="2512" height="252" key="GridCell.Tab.0.right/0.0.2560.1034@0.0.2560.1034" timestamp="1605712973323" />
+    <state width="2512" height="252" key="GridCell.Tab.0.right/0.0.2560.1034@0.0.2560.1034" timestamp="1605719058648" />
     <state width="1493" height="253" key="GridCell.Tab.1.bottom" timestamp="1603320488036">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -230,10 +243,10 @@
     </state>
     <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1603914654881" />
     <state x="608" y="183" key="SettingsEditor/0.0.2560.1034@0.0.2560.1034" timestamp="1604584597305" />
-    <state x="880" y="235" key="Vcs.Push.Dialog.v2" timestamp="1604586250986">
+    <state x="880" y="235" key="Vcs.Push.Dialog.v2" timestamp="1605713375639">
       <screen x="0" y="0" width="2560" height="1034" />
     </state>
-    <state x="880" y="235" key="Vcs.Push.Dialog.v2/0.0.2560.1034@0.0.2560.1034" timestamp="1604586250986" />
+    <state x="880" y="235" key="Vcs.Push.Dialog.v2/0.0.2560.1034@0.0.2560.1034" timestamp="1605713375639" />
     <state x="718" y="181" width="1120" height="851" key="search.everywhere.popup" timestamp="1604694444477">
       <screen x="0" y="0" width="2560" height="1034" />
     </state>
@@ -245,7 +258,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/src/main.rs</url>
-          <line>17</line>
+          <line>66</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
