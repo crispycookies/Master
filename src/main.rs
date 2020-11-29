@@ -15,21 +15,20 @@ fn store(timings: Vec<u128>, filename: &str) {
     let path = Path::new(filename);
     let mut file = File::create(&path).expect("Could not create File");
     for i in 0..timings.len() {
-        let builder = i.to_string() + "," + &*timings[i as usize].to_string();
+        let builder = i.to_string() + "," + &timings[i as usize].to_string() + "\n";
         let _write = file.write(builder.as_bytes());
     }
 }
 
 fn run(socket: UdpSocket, send_packages: u32, addr : &str) -> Rval {
-    let mut ret_val : Rval = Rval{packages_dropped : 0, packages_survived : 0, timings : Vec::with_capacity(send_packages as usize)};
+    let mut ret_val : Rval = Rval{packages_dropped : 0, packages_survived : 0, timings : Vec::new()};
 
-    for i in 0..send_packages {
+    for _ in 0..send_packages {
         let buf_send = "ping ping ping  ".as_bytes();
         let mut buf_read = [0; 16];
-        let time = Instant::now();
         let mut double_count = false;
 
-        let elapsed = time.elapsed();
+        let elapsed = Instant::now();
         match socket.send_to(&buf_send, addr) {
             Err(_e) => {}
             _ => {
@@ -48,7 +47,7 @@ fn run(socket: UdpSocket, send_packages: u32, addr : &str) -> Rval {
                 ret_val.packages_dropped = ret_val.packages_dropped + 1;
             }
         } else {
-            ret_val.timings[i as usize] = elapsed.as_millis();
+            ret_val.timings.push(elapsed.elapsed().as_millis());
             ret_val.packages_survived = ret_val.packages_survived + 1;
         }
     }
