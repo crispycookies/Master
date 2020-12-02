@@ -5,14 +5,62 @@ use std::io::{Write};
 use std::path::Path;
 use std::fs::File;
 
+struct Rval {
+    packages_dropped : u32,
+    packages_survived : u32,
+    timings : Vec<u128>
+}
+
+fn store(timings: Vec<u128>, filename: &str) {
+    let path = Path::new(filename);
+    let mut file = File::create(&path).expect("Could not create File");
+    for i in 0..timings.len() {
+        let builder = i.to_string() + "," + &timings[i as usize].to_string() + "\n";
+        let _write = file.write(builder.as_bytes());
+    }
+}
+
+fn run(socket: UdpSocket, send_packages: u32, addr : &str) -> Rval {
+    let mut ret_val : Rval = Rval{packages_dropped : 0, packages_survived : 0, timings : Vec::new()};
+
+    for _ in 0..send_packages {
+        let buf_send = "ping ping ping  ".as_bytes();
+        let mut buf_read = [0; 16];
+        let mut double_count = false;
+
+        let elapsed = Instant::now();
+        match socket.send_to(&buf_send, addr) {
+            Err(_e) => {}
+            _ => {
+                match socket.recv_from(&mut buf_read) {
+                    Err(_e) => {
+                        ret_val.packages_dropped = ret_val.packages_dropped + 1;
+                        double_count = true;
+                    }
+                    _ => {}
+                }
+            }
+        }
+
+        if buf_read != buf_send {
+            if !double_count {
+                ret_val.packages_dropped = ret_val.packages_dropped + 1;
+            }
+        } else {
+            ret_val.timings.push(elapsed.elapsed().as_millis());
+            ret_val.packages_survived = ret_val.packages_survived + 1;
+        }
+    }
+    return ret_val;
+}
+
 fn main() -> std::io::Result<()> {
     {
-        let mut iterator = 0;
         let args: Vec<String> = env::args().collect();
-        if args.len() != 4{
+        if args.len() != 5 {
             panic!("Invalid Count of Arguments Provided")
         }
-        let send_packages = 50000;
+        let send_packages = args.get(4).unwrap().parse::<u32>().expect("No Valid Sample Size Provided");
         print!("Connecting\n");
         let timeout = Duration::from_millis(args.get(3).unwrap().parse::<u64>().expect("No Valid Timeout Provided"));
         let socket = UdpSocket::bind(args.get(1).unwrap().to_string()).expect("Could not connect to Device");
@@ -22,56 +70,17 @@ fn main() -> std::io::Result<()> {
         let _block = socket.set_nonblocking(false);
         let _c = socket.connect(args.get(2).unwrap().to_string());
 
-        let path = Path::new("Timings.csv");
-        let mut file = File::create(&path).expect("Could not create File");
-
-        let mut package_drop_counter = 0;
-
         print!("Running\n");
 
-        for _i in 0..send_packages {
-            // Receives a single datagram message on the socket. If `buf` is too small to hold
-            // the message, it will be cut off.
-            //let buf_send = [255; 16];
-            let buf_send = [255; 16];
-            let mut buf_read = [0; 16];
-            let time = Instant::now();
+        let result = run(socket, send_packages, args.get(2).unwrap().to_string().as_str());
 
-            match socket.send_to(&buf_send, args.get(2).unwrap().to_string()){
-                Err(_e) => {
+        print!("Packages Dropped: {}\n", result.packages_dropped);
+        print!("Packages Not Dropped: {}\n", result.packages_survived);
 
-                }
-                _ => { match socket.recv_from(&mut buf_read){
-                    Err(_e) => {
-                        package_drop_counter = package_drop_counter + 1;
-                    }
-                    _ => {}
-                }}
-            }
+        print!("Saving File\n");
 
-
-            //socket.send_to(&buf_send, &src).expect("Failed to send the message!");
-
-            let elapsed = time.elapsed();
-
-            if buf_read != buf_send {
-                //print!("[WARNING]Message sent and received dont match\n");
-                package_drop_counter = package_drop_counter + 1;
-            }else{
-                let elapsed_millis =  elapsed.as_millis().to_string();
-                //print!("[NOTE]Received Message; RTT -> {}ms\n", elapsed_millis);
-
-                let builder = iterator.to_string() + "," + elapsed_millis.as_str() + "\n";
-
-                iterator = iterator + 1;
-                let _write = file.write(builder.as_bytes());
-            }
-            // Redeclare `buf` as slice of the received data and send reverse data back to origin.
-
-        }
-        print!("Packages Drops: {}\n", package_drop_counter);
-        print!("Packages Not Drops: {}\n", iterator);
-    } // the socket is closed here
+        let _ = store(result.timings, "Timings.csv");
+    }
     Ok(())
 }
 
